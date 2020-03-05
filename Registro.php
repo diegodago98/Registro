@@ -196,7 +196,7 @@ if (isset($_POST['Desconectar']))
 
   {
 
-    $conn->query("SELECT * FROM BBDD INTO OUTFILE '/prueba/registro_usuarios_cpd.csv' FIELDS TERMINATED BY ';' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n\r';");
+    $conn->query("SELECT * FROM BBDD INTO OUTFILE '/prueba/registro.csv' FIELDS TERMINATED BY ';' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n\r';");
 
     header( "refresh:0.5;url=pagina-registro.php" );
 
