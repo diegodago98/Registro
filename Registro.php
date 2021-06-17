@@ -3,7 +3,7 @@
     <title>Registro</title>
     <link rel=""/>
     <style>
-    
+
     tr.alternado:nth-child(odd) {
     background-color:#f2f2f2;
     }
@@ -12,9 +12,9 @@
     }
     </style>
   </head>
-  
-  
-  
+
+
+
     <body style="background-image:url('');">
       <table CELLPADDING="10">
         <tr>
@@ -25,9 +25,9 @@
         <td style="background-color:#DCDCDC;">
         <form action="" method="post">
           <p><b><font face="sans-serif">Nombre:</font></b>
-          
+
           //Seleccionar nombre y dalre a Iniciar para insertar nombre y fecha de entrada.
-          
+
           <select name="nombre">
 
               <option>Nombre 1</option>
@@ -63,13 +63,13 @@
           //Pintar la tabla y mostrar los tres primeros registros de cada persona
 
 
-
+            //Esto es una conexion//
             $sql = "select * from Nombre_tabla order by fecEntrada DESC LIMIT 3";
 		        $mostrar= $conexion->query($sql) or die ("error en la select");
 		          if ($mostrar){
 			          $fila = $mostrar->fetch_assoc();
                   echo '<table CELLPADDING="10" style="width: 1100;border: 2px solid;border-collapse:collapse; background-color:#B1B1B1;">';
-                  
+
                   echo "<tr>";
                     echo "<th style='border: 3px solid black;'>";
                     echo '<font face="sans-serif">'.'Nombre'."</font>";
@@ -91,11 +91,11 @@
 
 
 				          while ($fila){
-                  
 
-                 
 
-                 
+
+
+
 
 					        echo '<tr class="alternado" align="left">';
 					          echo '<td WIDTH="130px"  style="border: 1px solid black;"">'.'<font face="sans-serif">'."{$fila['Nombre']}"."</font>"."</td>";
@@ -103,15 +103,15 @@
 					          echo '<td align="center" style="border: 1px solid black;"">'.'<font face="sans-serif">'."{$fila['fecSalida']}"."</font>"."</td>";
 					          echo "<td  style='border: 1px solid black;'>".'<font face="sans-serif">'."{$fila['Descripción']}"."</font>"."</td>";
 			            echo "</tr>";
-		
-			
+
+
 	            $fila = $mostrar->fetch_assoc();
 		          }
               echo "</table>";
             }
               $mostrar->close();
           ?>
-         
+
           </td>
           </tr>
       </table>
@@ -141,8 +141,8 @@ $conn = new mysqli($servername, $username, $password, $database);
 
 if (isset($_POST['Iniciar']))
 	{
-    
-    
+
+
 
   $nombre = $_POST['nombre'];
   $descripcion = $_POST['descripcion'];
@@ -153,7 +153,7 @@ if (isset($_POST['Iniciar']))
 
   //Actualiza la página para mostrar los campos insertados.
 
-  header( "refresh:3; url=pagina-registro.php" ); 
+  header( "refresh:3; url=pagina-registro.php" );
 
   echo "<p style='color:white;'>".'<font face="sans-serif">'."Sesión iniciada de forma correcta. Para salir introduce tu nombre y dale al boton de Desconectar"."</font>"."</p>";
 
@@ -166,7 +166,7 @@ if (isset($_POST['Iniciar']))
 
 if (isset($_POST['Desconectar']))
 	{
-  
+
 
   $nombre = $_POST["nombre"];
 
@@ -181,15 +181,15 @@ if (isset($_POST['Desconectar']))
   #Salida registrando la hora, para ello, primero pones el nombre de las opciones y luego le das a desconectar
 
     $conn->query("UPDATE Nombre_tabla set fecSalida=NOW() where ID='$row[0]'") or die ($conn->error);
-    
+
     //Tras hacer cick en el boton de salir con el nombre puesto en las opciones se actualiza la página y se pinta la hora de salida
 
-    header( "refresh:0.5; url=pagina-registro.php" ); 
+    header( "refresh:0.5; url=pagina-registro.php" );
 
     echo "<p style='color:white; >".'<font face="sans-serif">'."Sesión cerrada de forma correcta."."</font>";
 
   }
-  
+
   //Si le das a exportar te generau archivo donde luego podras descargarlo en la ruta configurada
 
   if (isset($_POST['Descargar']))
